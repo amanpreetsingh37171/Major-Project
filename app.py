@@ -521,26 +521,64 @@ with tab2:
         else:
             st.info("Latitude and Longitude data not available for map.")
 
-    # ---------------- Tab 5: 3D Scatter ----------------
-    with insights_tab5:
-        st.write("🌌 3D Interactive Analysis of House Features")
-        fig_3d = px.scatter_3d(
-            house_data,
-            x='total_rooms',
-            y='total_bedrooms',
-            z='PredictedPrice',
-            color='median_income',
-            size='population',
-            hover_name='ocean_proximity',
-            size_max=30,
-            title='3D Analysis: Rooms vs Bedrooms vs Price'
-        )
-        fig_3d.update_layout(title_font_size=20, scene=dict(
-            xaxis_title='Total Rooms',
-            yaxis_title='Total Bedrooms',
-            zaxis_title='Predicted Price ($)'
-        ))
-        st.plotly_chart(fig_3d, use_container_width=True)
+
+
+
+
+        # # Example: user inputs latitude & longitude
+        # latitude = st.number_input("Enter Latitude", value=34.05)
+        # longitude = st.number_input("Enter Longitude", value=-118.25)
+
+        # # ---- Predict Price (dummy value here, replace with your model) ----
+        # # You need to pass the full feature vector including latitude & longitude
+        # predicted_price = 500000  # model.predict([[features...]])[0]
+
+        # # Create DataFrame for map plotting
+        # map_df = pd.DataFrame({
+        #     "lat": [latitude],
+        #     "lon": [longitude],
+        #     "price": [predicted_price]
+        # })
+
+        # # Plot Map
+        # fig = px.scatter_mapbox(
+        #     map_df,
+        #     lat="lat",
+        #     lon="lon",
+        #     size=[15],  # marker size
+        #     color_discrete_sequence=["red"],
+        #     hover_name="price",
+        #     zoom=8,
+        #     height=500
+        # )
+
+        # fig.update_layout(mapbox_style="open-street-map")
+        # st.plotly_chart(fig, use_container_width=True)
+
+
+
+
+
+            # ---------------- Tab 5: 3D Scatter ----------------
+            with insights_tab5:
+                st.write("🌌 3D Interactive Analysis of House Features")
+                fig_3d = px.scatter_3d(
+                    house_data,
+                    x='total_rooms',
+                    y='total_bedrooms',
+                    z='PredictedPrice',
+                    color='median_income',
+                    size='population',
+                    hover_name='ocean_proximity',
+                    size_max=30,
+                    title='3D Analysis: Rooms vs Bedrooms vs Price'
+                )
+                fig_3d.update_layout(title_font_size=20, scene=dict(
+                    xaxis_title='Total Rooms',
+                    yaxis_title='Total Bedrooms',
+                    zaxis_title='Predicted Price ($)'
+                ))
+                st.plotly_chart(fig_3d, use_container_width=True)
 
 
 
